@@ -1,0 +1,18 @@
+
+:host {
+  display: flex;
+
+  border: 1px solid black;
+  border-radius: 50%;
+
+  width: 90px;
+  height: 90px;
+
+  align-items: center;
+  justify-content: center;
+
+  &.big {
+    width: 160px;
+    height: 160px;
+  }
+}
