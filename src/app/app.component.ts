@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, ViewContainerRef, ViewChild } from "@angular/core";
+import { Component, ComponentFactoryResolver, ViewContainerRef, ViewChild, ComponentRef } from "@angular/core";
 import { PizzaComponent } from "./pizza/pizza.component";
 
 @Component({
@@ -13,9 +13,25 @@ export class AppComponent {
   public big: boolean = false;
   public type: string = 'Pepperoni';
 
+  pizzas: ComponentRef<PizzaComponent>[] = [];
+
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver
-  ) { }
+  ) {
+    this.go();
+  }
+
+  go() {
+    requestAnimationFrame(this.go.bind(this));
+
+    for (const pizza of this.pizzas) {
+      pizza.instance.posX += 0.4;
+
+      if (pizza.instance.posX >= 600) {
+        pizza.destroy();
+      }
+    }
+  }
 
   createPizza() {
     const factory = this.componentFactoryResolver.resolveComponentFactory(PizzaComponent);
@@ -23,5 +39,7 @@ export class AppComponent {
 
     componentRef.instance.type = this.type;
     componentRef.instance.size = this.big ? 'big' : 'small';
+
+    this.pizzas.push(componentRef);
   }
 }

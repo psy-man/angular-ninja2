@@ -2,8 +2,13 @@
 :host {
   display: flex;
 
-  border: 1px solid black;
-  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  //outline: 1px solid #000;
+
+  will-change: transform;
 
   width: 90px;
   height: 90px;
@@ -11,8 +16,5 @@
   align-items: center;
   justify-content: center;
 
-  &.big {
-    width: 160px;
-    height: 160px;
-  }
+
 }
