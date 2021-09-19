@@ -1,0 +1,19 @@
+
+:host {
+  display: block;
+  width: 20px;
+  height: 20px;
+
+  position: fixed;
+  will-change: transform;
+
+  img {
+    animation: spin .2s linear infinite;
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}

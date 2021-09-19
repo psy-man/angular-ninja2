@@ -1,32 +1,12 @@
+<div class="scene">
+  <ng-container #scene></ng-container>
 
-
-<div class="oven">
-  <img src="assets/oven_1.png" alt="" width="300">
+  <div class="ninja" #ninja>
+    <img src="assets/ninja.png" alt="Ninja" width="100">
+  </div>
 </div>
-
-<div class="container">
-  <ng-container #container></ng-container>
-</div>
-
-
-
-
 
 <div class="controls">
-  <label>
-    Mega size:
-    <input type="checkbox" [(ngModel)]="big">
-  </label>
-  <label>
-    Type:
-    <select [(ngModel)]="type">
-      <option value="Pepperoni">Pepperoni</option>
-      <option value="Margherita">Margherita</option>
-      <option value="BBQ Chicken">BBQ Chicken</option>
-      <option value="Hawaiian">Hawaiian</option>
-    </select>
-  </label>
-
-
-  <button (click)="createPizza()">Create pizza</button>
+  <button (click)="auth()">Toggle Auth</button>
+  <button *isAuthorized (click)="spawnFruit()">Start game</button>
 </div>
