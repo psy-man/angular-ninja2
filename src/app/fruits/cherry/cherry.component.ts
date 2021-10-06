@@ -7,7 +7,7 @@ import { FruitComponent } from '../fruit.component';
   templateUrl: './cherry.component.html'
 })
 export class CherryComponent extends FruitComponent {
-  constructor() {
-    super();
+  getName(): string {
+    return 'Cherry';
   }
 }

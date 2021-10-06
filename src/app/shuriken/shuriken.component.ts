@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, ComponentRef } from '@angular/core';
-import { FruitComponent } from '../fruits/fruit.component';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-shuriken',
@@ -7,7 +6,8 @@ import { FruitComponent } from '../fruits/fruit.component';
   styleUrls: ['./shuriken.component.scss'],
   host: {
     '[style.transform]': `'translateX(' + posX + 'px) translateY(' + posY + 'px)'`
-  }
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ShurikenComponent {
   @Input() posX: number = 0;

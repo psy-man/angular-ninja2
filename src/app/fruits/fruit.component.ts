@@ -24,4 +24,10 @@ export abstract class FruitComponent {
   public get centerY() {
     return this.posY + this.height / 2;
   }
+
+  public abstract getName(): string;
+
+  public ngOnInit(): void {
+
+  }
 }

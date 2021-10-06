@@ -1,4 +1,4 @@
-import { Directive, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, Input, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { AuthService } from './auth.service';
 
 @Directive({
@@ -11,7 +11,7 @@ export class AuthDirective implements OnInit {
     private templateRef: TemplateRef<any>,
     private viewContainer: ViewContainerRef,
     private authService: AuthService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.authService.authChanged.subscribe(isAuthorized => {

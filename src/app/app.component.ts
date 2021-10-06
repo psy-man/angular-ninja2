@@ -45,18 +45,13 @@ export class AppComponent {
 
   shurikens: ComponentRef<ShurikenComponent>[] = [];
 
-  private animationFrame!: number;
+  private intervalId!: number;
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
     private authService: AuthService
   ) {
     this.renderScene();
-
-    // this.spawnInterval = setInterval(
-    //   () => this.spawnFruit(),
-    //   700
-    // );
   }
 
   renderScene() {
@@ -67,7 +62,7 @@ export class AppComponent {
       fruit.changeDetectorRef.markForCheck();
 
       if (fruit.instance.posY + fruit.instance.height >= document.body.clientHeight) {
-        cancelAnimationFrame(this.animationFrame);
+        clearInterval(this.intervalId);
 
         this.fruits.forEach(f => f.destroy());
         this.fruits = [];
@@ -83,8 +78,7 @@ export class AppComponent {
       shuriken.instance.move();
       shuriken.changeDetectorRef.markForCheck();
 
-      if (shuriken.instance.isOutsideScene())
-      {
+      if (shuriken.instance.isOutsideScene()) {
         shuriken.destroy();
         this.shurikens = this.shurikens.filter(s => s !== shuriken);
       }
@@ -99,6 +93,10 @@ export class AppComponent {
         }
       }
     }
+  }
+
+  startGame(): void {
+    this.intervalId = setInterval(() => this.spawnFruit(),700 );
   }
 
   // Minkowski addition
@@ -119,13 +117,14 @@ export class AppComponent {
     return Math.atan2(distanceY, distanceX) + Math.PI;
   }
 
+
   spawnFruit() {
     const fruitType = this.fruitsCollection[
       this.randomInt(0, this.fruitsCollection.length - 1)
     ];
 
     const componentRef = this.createComponent(fruitType);
-    componentRef.instance.posX = this.randomInt(0, document.body.clientWidth - 50);
+    componentRef.instance.posX = this.randomInt(0, document.body.clientWidth - componentRef.instance.width);
 
     this.fruits.push(componentRef);
   }

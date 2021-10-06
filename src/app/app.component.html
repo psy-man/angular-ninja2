@@ -1,6 +1,7 @@
 <div class="scene">
   <ng-container #scene></ng-container>
 
+
   <div class="ninja" #ninja>
     <img src="assets/ninja.png" alt="Ninja" width="100">
   </div>
@@ -8,5 +9,8 @@
 
 <div class="controls">
   <button (click)="auth()">Toggle Auth</button>
-  <button *isAuthorized (click)="spawnFruit()">Start game</button>
+
+  <button *isAuthorized (click)="startGame()" class="start-game">
+    Start game
+  </button>
 </div>

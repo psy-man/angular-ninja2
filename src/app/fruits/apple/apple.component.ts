@@ -7,7 +7,13 @@ import { FruitComponent } from '../fruit.component';
   templateUrl: './apple.component.html'
 })
 export class AppleComponent extends FruitComponent {
-  constructor() {
-    super();
+  getName(): string {
+    return 'Apple';
+  }
+
+  public ngOnInit(): void {
+    super.ngOnInit();
+
+    console.log(this.getName());
   }
 }
